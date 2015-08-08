@@ -6,7 +6,12 @@ build.css:
 	autoprefixer static/css/bundle.css
 
 build.js:
-	browserify js/app.js -o static/js/bundle.js
+	mkdir -p static/js
+	browserify frontend/js/app.js | uglifyjs -c > static/js/bundle.js
+
+build.js.debug:
+	browserify frontend/js/app.js > static/js/bundle.js
+
 
 build: build.js build.css
 
@@ -18,8 +23,8 @@ watch.js:
 
 watch: watch.css watch.js
 
-jshint:
-	jshint --reporter node_modules/jshint-stylish/stylish.js js/; true
+eslint:
+	eslint frontend/js
 
 dev:
 	npm install
