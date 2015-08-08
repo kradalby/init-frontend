@@ -26,6 +26,8 @@ watch: watch.css watch.js
 eslint:
 	eslint frontend/js
 
+lint: eslint
+
 dev:
 	npm install
 
